@@ -1,4 +1,4 @@
-# High Accuracy Photosynthetically Active Radiation Detection
+# High-Accuracy Photosynthetically Active Radiation Sensor
 > Ben Cooper @ Living Solar Panels - UCSC
 
 ## Overview
