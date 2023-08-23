@@ -1,7 +1,7 @@
 # High-Accuracy Photosynthetically Active Radiation Sensor
 > Ben Cooper @ Living Solar Panels - UCSC
 
-## Overview
+## Living Solar Panels - Overview
 
 ### Problem Statement
 &emsp; Reducing harmful emissions brought about by the fossil fuel industry is one key step in mitigating the current climate crisis. However, proposed renewable energy solutions such as solar and wind energy rely heavily on the extraction, refinement, and processing of rare earth minerals such as cobalt, lithium, and silicon that bring about a plethora of environmental and humanitarian health crises, such as the case of child slave mines in the DRC (Kelly, 2019). 
