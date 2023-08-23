@@ -1,7 +1,7 @@
 # High-Accuracy Photosynthetically Active Radiation Sensor
 > Ben Cooper @ Living Solar Panels - UCSC
 
-## Living Solar Panels - Overview
+## Project Context
 
 ### Problem Statement
 &emsp; Reducing harmful emissions brought about by the fossil fuel industry is one key step in mitigating the current climate crisis. However, proposed renewable energy solutions such as solar and wind energy rely heavily on the extraction, refinement, and processing of rare earth minerals such as cobalt, lithium, and silicon that bring about a plethora of environmental and humanitarian health crises, such as the ongoing case of child slave mines in the DRC (Kelly, 2019). 
@@ -11,7 +11,7 @@
 
 
 
-## Importance of PAR
+## Background
 
 &emsp; Photosynthetically Active Radiation (PAR) refers to the portion of the electromagnetic spectrum that is essential for photosynthesis in plants and other photosynthetic organisms. It represents the range of wavelengths of light that are absorbed by chlorophyll and other pigments involved in the photosynthetic process. PAR is primarily composed of visible light wavelengths, which range from approximately 400 to 700 nanometers (nm). 
 
