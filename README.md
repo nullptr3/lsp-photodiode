@@ -1,4 +1,4 @@
-# Photodiode Calibration and Design for High Accuracy Photosynthetically Active Radiation Detection
+# High Accuracy Photosynthetically Active Radiation Detection
 > Ben Cooper @ Living Solar Panels - UCSC
 
 ## Overview
