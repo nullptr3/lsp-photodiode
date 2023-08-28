@@ -13,7 +13,7 @@
 ### Background
 &emsp; Photosynthetically Active Radiation (PAR) refers to the portion of the electromagnetic spectrum that is essential for photosynthesis in plants and other photosynthetic organisms. It represents the range of wavelengths of light that are absorbed by chlorophyll and other pigments involved in the photosynthetic process. PAR is primarily composed of visible light wavelengths, which range from approximately 400 to 700 nanometers (nm). The intensity and duration of exposure to PAR influence photosynthetic rates, and consequently, affect the concentration of malic acid present on either side of the cactus. Thus, the greater the difference of PAR on either side of the cactus, the greater the concentration difference, and in turn the potential difference across either side of the cactus. 
 
-### Outcome
-&emsp; 
+### Results
+&emsp; With a cost of approximately 
 
 ## Design
