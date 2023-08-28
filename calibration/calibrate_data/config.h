@@ -20,8 +20,8 @@
 //   - Adafruit AirLift Shield -> https://www.adafruit.com/product/4285
 //   - Adafruit AirLift FeatherWing -> https://www.adafruit.com/product/4264
 
-#define WIFI_SSID "LoikLab" //change this
-#define WIFI_PASS "LivingSolar" //change this
+#define WIFI_SSID "" //change this
+#define WIFI_PASS "" //change this
 
 // uncomment the following line if you are using airlift
 // #define USE_AIRLIFT
