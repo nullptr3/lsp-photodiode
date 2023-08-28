@@ -2,6 +2,9 @@
 > Ben Cooper @ Living Solar Panels - UCSC
 
 ## Overview
+### Introduction
+&emsp; The goal of this project is to create a reliable, accurate, and affordable Photosynthetically Active Radiation (PAR) sensor that utilizes a pre-existing IoT framework to automatically upload data at a tunable frequency to support the ongoing efforts of the Living Solar Panels Lab. The device must also be easily reproducable at a large scale to allow maximum scalability and flexibility for current and future experiments.
+
 ### Context
 &emsp; Reducing harmful emissions brought about by the fossil fuel industry is one key step in mitigating the current climate crisis. However, proposed renewable energy solutions such as solar and wind energy rely heavily on the extraction, refinement, and processing of rare earth minerals such as cobalt, lithium, and silicon that bring about a plethora of environmental and humanitarian health crises, such as the ongoing case of child slave mines in the DRC (Kelly, 2019). 
 
@@ -9,9 +12,6 @@
 
 ### Background
 &emsp; Photosynthetically Active Radiation (PAR) refers to the portion of the electromagnetic spectrum that is essential for photosynthesis in plants and other photosynthetic organisms. It represents the range of wavelengths of light that are absorbed by chlorophyll and other pigments involved in the photosynthetic process. PAR is primarily composed of visible light wavelengths, which range from approximately 400 to 700 nanometers (nm). The intensity and duration of exposure to PAR influence photosynthetic rates, and consequently, affect the concentration of malic acid present on either side of the cactus. Thus, the greater the difference of PAR on either side of the cactus, the greater the concentration difference, and in turn the potential difference across either side of the cactus. 
-
-### Goal
-&emsp; The goal of this project is to create a reliable, accurate, and affordable PAR sensor that utilizes a pre-existing IoT framework to automatically upload data at a tunable frequency to support the ongoing efforts of the Living Solar Panels lab. The device must also be easily reproducable at a large scale to allow maximum scalability and flexibility for current and future experiments.
 
 ### Outcome
 &emsp; 
