@@ -8,10 +8,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-# lin = a * x + b
-# exp = c * np.exp((x-f)/100*h) + g
-# return np.where(x < f, lin, exp)
-
 def licor(filename : str) -> pd.DataFrame:
     """Parses data from Licor file and
     generates a data frame containing only
@@ -81,49 +77,127 @@ def adafruit(filename : str) -> pd.DataFrame:
 
     return df
 
-def func(x, a, b, c, d):
-    log = a * np.log(x + b) + c
-    return log
+def func(x: np.ndarray, a: float, b: float, c: float, d: float) -> np.ndarray:
+    """
+    Helper function for relating AdafruitIO
+    photodiode values to Licor PAR data
+    
+    Args:
+        x (np.ndarray): photodiode values
+        a (float): scalar
+        b (float): log scalar
+        c (float): log offset
+        d (float): offset
+    
+    Returns:
+        np.ndarray: estimated par values
+    
+    """
+    
+    return a * np.log(b * x + c) + d
 
-def match(licor_filename : str, ada_filename) -> pd.DataFrame:
+def match(licor_filename : str, ada_filename : str, par_threshold : float = 1, pho_threshold : float = 1, smoothing_factor : int = 5, display : bool = False) -> np.ndarray:
+    """
+    Parent function for automatic calibration of photodiode output to equivalent \n
+    PAR measurements with simple pruning and smoothing factored in.
+    
+    Args:
+        licor_filename (str): licor data file w/ extension
+        ada_filename (str): photodiode data file w/ extension
+        par_threshold (float): removal region (default = 1)
+        pho_threshold (float): removal region (default = 1)
+        smoothing_factor (int): smooth out data via averaging (default = 5)
+        display (bool): display results as graph
+    
+    Returns:
+        ???
+    """
+    
     # parse data from given source files
     licor_df = licor(licor_filename)
     ada_df = adafruit(ada_filename)
-
+    
     # perform data point matching
     df = pd.merge_asof(ada_df, licor_df, on='datetime')
-
-    # customizable noise threshold
-    par_threshold = 1
-    mv_threshold = 1
-
+    
     # remove dead data points
     df = df[df['par'].diff().abs() > par_threshold]
-    df = df[df['mv'].diff().abs() > mv_threshold]
+    df = df[df['mv'].diff().abs() > pho_threshold]
     df = df.reset_index(drop=True)
     
-    # sort data frame in-place based on mv
+    # sort data frame in-place based on photodiode data
     df.sort_values(by='mv', inplace=True)
     
-    # group data based on threshold proximity
-    threshold = 5
-    
+    # group and average data based on threshold proximity
     bins = np.arange(df['mv'].min(), 
-                     df['mv'].max() + threshold, 
-                     threshold)
+                     df['mv'].max() + smoothing_factor, 
+                     smoothing_factor)
     
-    df['bin'] = pd.cut(df['mv'], bins=bins, labels=False)
-    
+    df['bin'] = pd.cut(df['mv'], bins=bins, labels=False)    
     df = df.groupby('bin').mean().reset_index()
-    
-    plt.scatter(df['mv'], df['par'], s=1)
     
     # curve fitting
     params, covariance = curve_fit(func, df['mv'], df['par'], method='lm', ftol=1e-32, maxfev=1000000)
     a, b, c, d = params
     
-    plt.plot(df['mv'], func(df['mv'], a, b, c, d), 'k')
-    plt.title(f'Photodiode-to-Par: {a}*log({d} * x + {b}) + {c}')
-    plt.show()
+    # display results
+    if(display):
+        plt.scatter(df['mv'], df['par'], s=1)
+        plt.plot(df['mv'], func(df['mv'], a, b, c, d))
+        plt.title(f'{a} * log({b} * x + {c}) + {d}')
+        plt.show()
 
-match("test_0830_2.txt", "pv.csv")
+
+
+
+
+
+
+# def match(licor_filename : str, ada_filename : str, par_threshold : float = 1, pho_threshold : float  = 1, smoothing_factor : int = 5) -> pd.DataFrame:
+#     """
+    
+    
+    
+#     """
+    
+#     # parse data from given source files
+#     licor_df = licor(licor_filename)
+#     ada_df = adafruit(ada_filename)
+
+#     # perform data point matching
+#     df = pd.merge_asof(ada_df, licor_df, on='datetime')
+
+#     # customizable noise threshold
+#     par_threshold = 1
+#     mv_threshold = 1
+
+#     # remove dead data points
+#     df = df[df['par'].diff().abs() > par_threshold]
+#     df = df[df['mv'].diff().abs() > mv_threshold]
+#     df = df.reset_index(drop=True)
+    
+#     # sort data frame in-place based on mv
+#     df.sort_values(by='mv', inplace=True)
+    
+#     # group data based on threshold proximity
+#     threshold = 5
+    
+#     bins = np.arange(df['mv'].min(), 
+#                      df['mv'].max() + threshold, 
+#                      threshold)
+    
+#     df['bin'] = pd.cut(df['mv'], bins=bins, labels=False)
+    
+#     df = df.groupby('bin').mean().reset_index()
+    
+#     # curve fitting
+#     params, covariance = curve_fit(func, df['mv'], df['par'], method='lm', ftol=1e-32, maxfev=1000000)
+#     a, b, c, d = params
+    
+#     return a, b, c, d
+
+
+
+
+if __name__ == "__main__":
+    match("demo_data/licor_demo.txt", "demo_data/photodiode_demo.csv", display=True)
